@@ -45,11 +45,6 @@ def prim(x, y, grid):
 
     while len(adjacent) > 0:
 
-        #cv2.namedWindow('Maze', cv2.WINDOW_NORMAL)
-        #cv2.imshow('Maze', maze)
-        #cv2.waitKey(0)
-        #cv2.destroyAllWindows()
-
         cell = random.choice(adjacent) # choose a random cell from the adjacent set
         ny = cell[0]
         nx = cell[1]
