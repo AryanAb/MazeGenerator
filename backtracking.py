@@ -10,8 +10,8 @@ print("Using OpenCV version: " + cv2.__version__)
 
 sys.setrecursionlimit(5000)
 
-height = 155
-width = 155
+height = 113
+width = 113
 
 class Directions(Enum):
     UP = 1
