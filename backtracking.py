@@ -8,10 +8,10 @@ import sys
 
 print("Using OpenCV version: " + cv2.__version__)
 
-sys.setrecursionlimit(5000)
+sys.setrecursionlimit(8000)
 
-height = 177
-width = 177
+height = 57
+width = 57
 
 
 class Directions(Enum):
@@ -63,7 +63,7 @@ def generator(cx, cy, grid):
                 nx = cx
                 mx = cx
 
-            if not grid[ny, nx] == 0.5:
+            if grid[ny, nx] != 0.5:
                 grid[my, mx] = 0.5
                 generator(nx, ny, grid)
 
@@ -88,6 +88,6 @@ if __name__ == "__main__":
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    maze = maze * 255
+    maze = maze * 255.0
 
-    cv2.imwrite("Maze.jpeg", maze)
+    cv2.imwrite("Maze.png", maze)

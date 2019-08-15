@@ -7,8 +7,8 @@ import cv2
 print("Using OpenCV version: " + cv2.__version__)
 
 
-height = 113
-width = 113
+height = 77
+width = 77
 
 maze = np.ones((height, width), dtype=np.float)
 
@@ -20,7 +20,6 @@ for i in range(height):
             maze[i, j] = 0.25
 
 
-
 def removeDuplicate(_list):
     final_list = []
     for num in _list:
@@ -28,9 +27,10 @@ def removeDuplicate(_list):
             final_list.append(num)
     return final_list
 
-def prim(x, y, grid):
 
-    grid[y, x] = 0.5 # mark the starting cell as part of the maze
+def prims(x, y, grid):
+
+    grid[y, x] = 0.5  # mark the starting cell as part of the maze
 
     adjacent = []
 
@@ -45,13 +45,16 @@ def prim(x, y, grid):
 
     while len(adjacent) > 0:
 
-        cell = random.choice(adjacent) # choose a random cell from the adjacent set
+        print(len(adjacent))
+
+        # choose a random cell from the adjacent set
+        cell = random.choice(adjacent)
         ny = cell[0]
         nx = cell[1]
 
         directions = []
 
-        grid[ny, nx] = 0.5 # mark it as part of the maze
+        grid[ny, nx] = 0.5  # mark it as part of the maze
 
         # if the adjacant cells are part of the maze, crave a passage to one of them
         if grid[ny + 2, nx] == 0.5:
@@ -84,17 +87,17 @@ def prim(x, y, grid):
         if grid[ny, nx - 2] == 1:
             adjacent.append([ny, nx - 2])
 
-        adjacent = removeDuplicate(adjacent) # remove any duplicates in the set
+        # remove any duplicates in the set
+        adjacent = removeDuplicate(adjacent)
 
-        adjacent.remove(cell) # reomve the cell from the set
+        adjacent.remove(cell)  # reomve the cell from the set
 
 
 if __name__ == "__main__":
-    
     sx = random.choice(range(2, width - 2, 2))
     sy = random.choice(range(2, height - 2, 2))
-    
-    prim(sx, sy, maze)
+
+    prims(sx, sy, maze)
 
     for i in range(height):
         for j in range(width):

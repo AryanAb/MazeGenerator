@@ -10,11 +10,13 @@ print("Using OpenCV version: " + cv2.__version__)
 height = 113
 width = 113
 
+
 class Directions(Enum):
     UP = 1
     DOWN = 2
     LEFT = 3
     RIGHT = 4
+
 
 maze = np.ones((height, width), dtype=np.float)
 
@@ -24,7 +26,6 @@ for i in range(height):
             maze[i, j] = 0
         if i == 0 or j == 0 or i == height - 1 or j == width - 1:
             maze[i, j] = 0.5
-
 
 
 def aldous_broder(x, y, grid):
@@ -40,7 +41,7 @@ def aldous_broder(x, y, grid):
         print(v)
 
         dir = random.randint(1, 4)
-    
+
         if dir == Directions.UP.value:
             if grid[y - 2, x] == 1:
                 grid[y - 2, x] = 0.5
@@ -58,7 +59,7 @@ def aldous_broder(x, y, grid):
         elif dir == Directions.LEFT.value:
             if grid[y, x - 2] == 1:
                 grid[y, x - 2] = 0.5
-                grid[y , x - 1] = 0.5
+                grid[y, x - 1] = 0.5
                 v = v - 1
             if not x == 2:
                 x = x - 2
@@ -72,12 +73,11 @@ def aldous_broder(x, y, grid):
 
 
 if __name__ == "__main__":
-    
+
     sx = random.choice(range(2, width - 2, 2))
     sy = random.choice(range(2, height - 2, 2))
-    
-    aldous_broder(sx, sy, maze)
 
+    aldous_broder(sx, sy, maze)
 
     for i in range(height):
         for j in range(width):
