@@ -9,7 +9,7 @@ mazegen is a python package that creates randomly generated mazes. Curently, it 
 
 ## How to Install
 
-In the future, the project will be available on PyPI so you could use pip. For now, you have to clone the project and add the files to your directory. You will need all the python files in order to use all the algorithms provided.
+In the future, the project will be available on PyPI so you could use pip. For now, you have to clone the project and add the files to your directory. You will need all the python files to use all the algorithms provided.
 
 ## How to Use
 
@@ -32,9 +32,9 @@ Each string corresponds with its algorithm.
 
 The second and third arguments are the **height** and **width** respectively. Note that because of how the algorithms work, the height and width must be odd numbers. If even numbers are given, the generator adds 1 to them to make them odd.
 
-The forth argument is the **path** were the image is saved. The path is relative to the location of <span>mazegen.py</span>.
+The fourth argument is the **path** where the image is saved. The path is relative to the location of <span>mazegen.py</span>.
 
-The Fith and last argument is a boolean which determines if to show the maze in a window after generation. If True, an OpenCV window will open containing the generatred maze.
+The Fith, and last argument, is a boolean which determines if to show the maze in a window after generation. If True, an OpenCV window will open containing the generated maze.
 
 ## Examples
 
@@ -118,12 +118,12 @@ generate_maze("prims", 55, 55, "Maze.png", True)
 
 ### Student Hobby Project
 
-Please note that this is simply a student hobby project. There might be, and certainly are, areas of improvements. All feedbacks are much appreciated.
+Please note that this is simply a student hobby project. There might be, and certainly are, areas of improvement. All feedbacks are much appreciated.
 
-### Futre
+### Future
 
-Here are my plans for the future of this projects:
+Here are my plans for the future of this project:
 
 * Adding more algorithms
-* Optimizing current algorithms further more
+* Optimizing current algorithms furthermore
 * Creating a package of this project and adding it to PyPI
