@@ -1,12 +1,9 @@
-# A program which uses recursive backtracking to generate a maze
+# A program which uses Aldous-Broder Algorithm to generate a maze
 
 import random
 from enum import Enum
 import numpy as np
 import cv2
-import sys
-
-sys.setrecursionlimit(8000)
 
 
 class Directions(Enum):
@@ -16,7 +13,7 @@ class Directions(Enum):
     RIGHT = 4
 
 
-class Backtracking:
+class Aldous_Broder:
 
     def __init__(self, height, width, path, displayMaze):
 
@@ -49,7 +46,7 @@ class Backtracking:
 
         for i in range(self.height):
             for j in range(self.width):
-                if maze[i, j] == 0.5:
+                if not maze[i, j] == 0:
                     maze[i, j] = 1
 
         maze[1, 2] = 1
@@ -64,37 +61,41 @@ class Backtracking:
         maze = maze * 255.0
         cv2.imwrite(self.path, maze)
 
-    def generator(self, cx, cy, grid):
-        grid[cy, cx] = 0.5
+    def generator(self, x, y, grid):
+        grid[y, x] = 0.5
 
-        if grid[cy - 2, cx] == 0.5 and grid[cy + 2, cx] == 0.5 and grid[cy, cx - 2] == 0.5 and grid[cy, cx + 2] == 0.5:
-            pass
-        else:
-            li = [1, 2, 3, 4]
-            while len(li) > 0:
-                dir = random.choice(li)
-                li.remove(dir)
+        v = ((self.height - 5)/2 + 1) * ((self.width - 5)/2 + 1)
 
-                if dir == Directions.UP.value:
-                    ny = cy - 2
-                    my = cy - 1
-                elif dir == Directions.DOWN.value:
-                    ny = cy + 2
-                    my = cy + 1
-                else:
-                    ny = cy
-                    my = cy
+        # while all cells have not been visited
+        while v > 1:
 
-                if dir == Directions.LEFT.value:
-                    nx = cx - 2
-                    mx = cx - 1
-                elif dir == Directions.RIGHT.value:
-                    nx = cx + 2
-                    mx = cx + 1
-                else:
-                    nx = cx
-                    mx = cx
+            dir = random.randint(1, 4)
 
-                if grid[ny, nx] != 0.5:
-                    grid[my, mx] = 0.5
-                    self.generator(nx, ny, grid)
+            if dir == Directions.UP.value:
+                if grid[y - 2, x] == 1:
+                    grid[y - 2, x] = 0.5
+                    grid[y - 1, x] = 0.5
+                    v -= 1
+                if not y == 2:
+                    y -= 2
+            elif dir == Directions.DOWN.value:
+                if grid[y + 2, x] == 1:
+                    grid[y + 2, x] = 0.5
+                    grid[y + 1, x] = 0.5
+                    v -= 1
+                if not y == self.height - 3:
+                    y += 2
+            elif dir == Directions.LEFT.value:
+                if grid[y, x - 2] == 1:
+                    grid[y, x - 2] = 0.5
+                    grid[y, x - 1] = 0.5
+                    v -= 1
+                if not x == 2:
+                    x -= 2
+            elif dir == Directions.RIGHT.value:
+                if grid[y, x + 2] == 1:
+                    grid[y, x + 2] = 0.5
+                    grid[y, x + 1] = 0.5
+                    v -= 1
+                if not x == self.width - 3:
+                    x += 2
