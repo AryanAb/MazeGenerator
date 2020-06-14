@@ -3,7 +3,6 @@
 import random
 import numpy as np
 import cv2
-import time
 
 
 class Prims:
@@ -54,6 +53,8 @@ class Prims:
         maze = maze * 255.0
         cv2.imwrite(self.path, maze)
 
+        return 0
+
     def prims(self, x, y, grid):
         grid[y, x] = 0.5  # mark the starting cell as part of the maze
 
@@ -70,11 +71,6 @@ class Prims:
             adjacent.append([y, x - 2])
 
         while len(adjacent) > 0:
-
-            cv2.namedWindow('Maze', cv2.WINDOW_NORMAL)
-            cv2.imshow('Maze', grid)
-            time.sleep(0.1)
-            cv2.waitKey(1)
 
             # choose a random cell from the adjacent set
             cell = random.choice(adjacent)

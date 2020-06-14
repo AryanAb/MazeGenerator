@@ -64,6 +64,8 @@ class Backtracking:
         maze = maze * 255.0
         cv2.imwrite(self.path, maze)
 
+        return 0
+
     def generator(self, cx, cy, grid):
         grid[cy, cx] = 0.5
 

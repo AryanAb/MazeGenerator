@@ -65,6 +65,8 @@ class Hunt_and_Kill:
         maze = maze * 255.0
         cv2.imwrite(self.path, maze)
 
+        return 0
+
     def kill(self, cx, cy, grid):
         grid[cy, cx] = 0.5
 

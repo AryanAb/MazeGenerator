@@ -61,6 +61,8 @@ class Aldous_Broder:
         maze = maze * 255.0
         cv2.imwrite(self.path, maze)
 
+        return 0
+
     def generator(self, x, y, grid):
         grid[y, x] = 0.5
 
