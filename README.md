@@ -1,5 +1,7 @@
 # mazegen
 
+[![Build Status](https://travis-ci.com/AryanAb/MazeGenerator.svg?branch=master)](https://travis-ci.com/AryanAb/MazeGenerator)
+
 mazegen is a python package that creates randomly generated mazes. Curently, it supports the following algorithms:
 
 * Recursive Backtracking Algorithm
